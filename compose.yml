@@ -1,19 +1,19 @@
 volumes:
-  nexical_core_postgres_data: {}
-  nexical_core_postgres_data_backups: {}
-  nexical_core_redis_data: {}
+  '{{ cookiecutter.project_slug }}_postgres_data': {}
+  '{{ cookiecutter.project_slug }}_postgres_data_backups': {}
+  '{{ cookiecutter.project_slug }}_redis_data': {}
 
 services:
   node:
     build:
       context: .
       dockerfile: ./compose/local/node/Dockerfile
-    image: nexical_core_node
-    container_name: nexical_core_node
+    image: '{{ cookiecutter.project_slug }}_node'
+    container_name: '{{ cookiecutter.project_slug }}_node'
     depends_on:
       - ui
     volumes:
-      - .:/app:z
+      - '.:/{{ cookiecutter.project_slug }}:z'
     command: npm run dev
     ports:
       - '3000:3000'
@@ -24,13 +24,13 @@ services:
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
-    image: nexical_core_ui
-    container_name: nexical_core_ui
+    image: '{{ cookiecutter.project_slug }}_ui'
+    container_name: '{{ cookiecutter.project_slug }}_ui'
     depends_on:
       - postgres
       - redis
     volumes:
-      - .:/app:z
+      - '.:/{{ cookiecutter.project_slug }}:z'
     env_file:
       - ./.env/.django
       - ./.env/.postgres
@@ -41,8 +41,8 @@ services:
 
   api:
     <<: *django
-    image: nexical_core_api
-    container_name: nexical_core_api
+    image: '{{ cookiecutter.project_slug }}_api'
+    container_name: '{{ cookiecutter.project_slug }}_api'
     depends_on:
       - postgres
       - redis
@@ -52,8 +52,8 @@ services:
 
   worker:
     <<: *django
-    image: nexical_core_worker
-    container_name: nexical_core_worker
+    image: '{{ cookiecutter.project_slug }}_worker'
+    container_name: '{{ cookiecutter.project_slug }}_worker'
     depends_on:
       - redis
       - postgres
@@ -62,8 +62,8 @@ services:
 
   scheduler:
     <<: *django
-    image: nexical_core_scheduler
-    container_name: nexical_core_scheduler
+    image: '{{ cookiecutter.project_slug }}_scheduler'
+    container_name: '{{ cookiecutter.project_slug }}_scheduler'
     depends_on:
       - redis
       - postgres
@@ -72,8 +72,8 @@ services:
 
   flower:
     <<: *django
-    image: nexical_core_flower
-    container_name: nexical_core_flower
+    image: '{{ cookiecutter.project_slug }}_flower'
+    container_name: '{{ cookiecutter.project_slug }}_flower'
     ports:
       - '5555:5555'
     command: /start-flower
@@ -82,11 +82,11 @@ services:
     build:
       context: .
       dockerfile: ./compose/local/postgres/Dockerfile
-    image: nexical_core_postgres
-    container_name: nexical_core_postgres
+    image: '{{ cookiecutter.project_slug }}_postgres'
+    container_name: '{{ cookiecutter.project_slug }}_postgres'
     volumes:
-      - nexical_core_postgres_data:/var/lib/postgresql/data
-      - nexical_core_postgres_data_backups:/backups
+      - '{{ cookiecutter.project_slug }}_postgres_data:/var/lib/postgresql/data'
+      - '{{ cookiecutter.project_slug }}_postgres_data_backups:/backups'
       - ./restore:/restore
     env_file:
       - ./.env/.postgres
@@ -96,8 +96,8 @@ services:
 
   redis:
     image: redis:6
-    container_name: nexical_core_redis
+    container_name: '{{ cookiecutter.project_slug }}_redis'
     ports:
       - '6379:6379'
     volumes:
-      - nexical_core_redis_data:/data
+      - '{{ cookiecutter.project_slug }}_redis_data:/data'

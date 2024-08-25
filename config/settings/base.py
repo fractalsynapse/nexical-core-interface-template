@@ -9,7 +9,7 @@ from django.template import base
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 
-APPS_NAME = "nexical_core"
+APPS_NAME = "{{ cookiecutter.project_slug }}"
 APPS_DIR = BASE_DIR / "app"
 
 env = environ.Env()
@@ -34,7 +34,7 @@ def get_redis_url(database_num):
 BASE_UI_URL = env.str("BASE_UI_URL", default="")
 BASE_API_URL = env.str("BASE_API_URL", default="")
 
-SESSION_COOKIE_NAME = "nxcl_core_session_id"
+SESSION_COOKIE_NAME = "{{ cookiecutter.project_slug }}_session_id"
 
 domain = env.str("DOMAIN_NAME", default="")
 if domain:
@@ -419,9 +419,9 @@ REST_FRAMEWORK = {
 # By Default swagger ui is available only to admin user(s). You can change permission classes to change that
 # See more configuration options at https://drf-spectacular.readthedocs.io/en/latest/settings.html#settings
 SPECTACULAR_SETTINGS = {
-    "TITLE": "Nexical Knowledge Explorer API",
+    "TITLE": "{{ cookiecutter.project_name }}",
     "DESCRIPTION": """
-Documentation for the OpenAPI compatible REST endpoints of the Nexical Knowledge Explorer API.
+Documentation for the OpenAPI compatible REST endpoints of the {{ cookiecutter.project_name }} API.
 <small>You can manage your API token <a href="/users/token/embed">here</a>.</small>
 """,
     "VERSION": "1.0.0",

@@ -1,6 +1,6 @@
 from celery import Celery
 
-app = Celery("nexical_core")
+app = Celery("{{ cookiecutter.project_slug }}")
 
 # Using a string here means the worker doesn't have to serialize
 # the configuration object to child processes.

@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 COPY ./requirements .
 
 # Create Python Dependency and Sub-Dependency Wheels.
-RUN pip wheel --wheel-dir /usr/src/app/wheels  \
+RUN pip wheel --wheel-dir /usr/src/{{ cookiecutter.project_slug }}/wheels  \
     -r ${BUILD_ENVIRONMENT}.txt
 
 
@@ -25,7 +25,7 @@ RUN pip wheel --wheel-dir /usr/src/app/wheels  \
 FROM python AS python-run-stage
 
 ARG BUILD_ENVIRONMENT=local
-ARG APP_HOME=/app
+ARG APP_HOME=/{{ cookiecutter.project_slug }}
 
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -57,7 +57,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 
 # All absolute dir copies ignore workdir instruction. All relative dir copies are wrt to the workdir instruction
 # copy python dependency wheels from python-build-stage
-COPY --from=python-build-stage /usr/src/app/wheels  /wheels/
+COPY --from=python-build-stage /usr/src/{{ cookiecutter.project_slug }}/wheels  /wheels/
 
 # use wheels to install python dependencies
 RUN pip install --no-cache-dir --no-index --find-links=/wheels/ /wheels/* \

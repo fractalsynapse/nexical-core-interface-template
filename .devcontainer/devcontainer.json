@@ -1,5 +1,5 @@
 {
-  "name": "nexical_core_dev",
+  "name": "{{ cookiecutter.project_slug }}_dev",
   "dockerComposeFile": ["../local.yml"],
   "init": true,
   "mounts": [
@@ -22,7 +22,7 @@
   "overrideCommand": false,
   "service": "django",
   "remoteUser": "dev-user",
-  "workspaceFolder": "/app",
+  "workspaceFolder": "/{{ cookiecutter.project_slug }}",
   "customizations": {
     "vscode": {
       "settings": {

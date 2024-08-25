@@ -5,7 +5,7 @@ BASE_UI_URL="http://localhost:3000"
 BASE_API_URL="http://localhost:8080"
 
 USE_DOCKER=yes
-IPYTHONDIR="/app/.ipython"
+IPYTHONDIR="/{{ cookiecutter.project_slug }}/.ipython"
 
 # Redis
 # ------------------------------------------------------------------------------

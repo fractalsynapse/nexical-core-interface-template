@@ -1,6 +1,5 @@
-# Translations for the Nexical Core project
-# Copyright (C) 2024 Adrian Webb
-# Adrian Webb <adrian@fractalsynapse.com>, 2024.
+# Translations for the {{ cookiecutter.project_name }}
+# Copyright (C) 2024
 #
 #, fuzzy
 msgid ""

@@ -10,8 +10,8 @@ from app.api import views as api_views
 from app.contact.views import ContactFormView
 from app.landing.views import HomeRedirectView
 
-admin.site.site_title = "Nexical Knowledge Explorer"
-admin.site.site_header = "Nexical Knowledge Explorer Administration"
+admin.site.site_title = "{{ cookiecutter.project_name }}"
+admin.site.site_header = "{{ cookiecutter.project_name }} Administration"
 admin.site.index_title = "Administration"
 
 

@@ -21,9 +21,6 @@ ADMIN_PATH = env("DJANGO_ADMIN_PATH")
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
-    "https://nexical.ai",
-    "https://core.nexical.ai",
-    "https://api.core.nexical.ai",
-    "https://www.googletagmanager.com",
-    "https://salesiq.zohopublic.com",
+    "https://{{ cookiecutter.domain_name }}",
+    "https://api.{{ cookiecutter.domain_name }}",
 ]
