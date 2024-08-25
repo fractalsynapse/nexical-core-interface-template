@@ -1,6 +1,7 @@
 {% load static i18n site_urls user_perms team_select %}
 
-{% is_team_member request.user as team_member %}
+{% is_team_member
+request.user as team_member %}
 {% if request.user.is_authenticated %}
   <div class="l-navbar">
     <nav class="l-navbar-nav">
