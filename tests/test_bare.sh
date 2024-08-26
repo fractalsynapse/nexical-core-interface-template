@@ -6,12 +6,12 @@
 set -o errexit
 set -x
 
+# Install OS deps
+sudo tests/install_os_dependencies.sh install
+
 # create a cache directory
 mkdir -p .cache/bare
 cd .cache/bare
-
-# Install OS deps
-sudo tests/install_os_dependencies.sh install
 
 # create the project using the default settings in cookiecutter.json
 cookiecutter ../../ --no-input "$@"
