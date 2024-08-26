@@ -1,4 +1,4 @@
-{% load static i18n site_urls user_perms team_select %}
+{% raw %}{% load static i18n site_urls user_perms team_select %}
 
 {% if request.user.is_authenticated %}
   <header>
@@ -91,3 +91,4 @@
     </div>
   </header>
 {% endif %}
+{% endraw %}

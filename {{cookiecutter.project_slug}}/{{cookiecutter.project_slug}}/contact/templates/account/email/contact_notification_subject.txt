@@ -1,4 +1,5 @@
-{% load i18n %}
+{% raw %}{% load i18n %}
 {% autoescape off %}
 New contact: {{ subject }}
 {% endautoescape %}
+{% endraw %}

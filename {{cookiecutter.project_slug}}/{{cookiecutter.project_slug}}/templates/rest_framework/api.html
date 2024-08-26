@@ -1,4 +1,4 @@
-{% extends "rest_framework/base.html" %}
+{% raw %}{% extends "rest_framework/base.html" %}
 
 {% load static i18n %}
 
@@ -14,3 +14,4 @@ block meta %} {{ block.super }}
 <meta name="author" content="Nexical AI" />
 <link rel="icon" href="{% static 'images/icons/favicon.ico' %}" />
 {% endblock meta %}
+{% endraw %}

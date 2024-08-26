@@ -1,4 +1,4 @@
-{% load static %}
+{% raw %}{% load static %}
 
 <div class="note-form container">
   <form id="note-form" class="form-horizontal">
@@ -36,3 +36,4 @@
     <input type="hidden" id="note-save-url" value="{% url 'research:save_note' %}" />
   </form>
 </div>
+{% endraw %}

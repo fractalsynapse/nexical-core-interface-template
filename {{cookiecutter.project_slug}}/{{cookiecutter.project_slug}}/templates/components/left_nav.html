@@ -1,4 +1,4 @@
-{% load static i18n site_urls user_perms team_select %}
+{% raw %}{% load static i18n site_urls user_perms team_select %}
 
 {% is_team_member
 request.user as team_member %}
@@ -104,3 +104,4 @@ request.user as team_member %}
     </nav>
   </div>
 {% endif %}
+{% endraw %}

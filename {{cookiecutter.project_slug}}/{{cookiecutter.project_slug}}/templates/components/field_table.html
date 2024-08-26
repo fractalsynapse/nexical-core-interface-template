@@ -1,4 +1,4 @@
-<div id="{{ id }}" class="{{ classes }} table field-table p-5">
+{% raw %}<div id="{{ id }}" class="{{ classes }} table field-table p-5">
   <div class="table-body border">
     {% for row in data %}
       <div class="row mx-auto {% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}">
@@ -12,3 +12,4 @@
     {% endfor %}
   </div>
 </div>
+{% endraw %}

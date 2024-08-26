@@ -1,4 +1,4 @@
-{% load static i18n site_urls user_perms %}
+{% raw %}{% load static i18n site_urls user_perms %}
 
 {% if request.user.is_authenticated
   %}
@@ -64,3 +64,4 @@
     </div>
   </footer>
 {% endif %}
+{% endraw %}

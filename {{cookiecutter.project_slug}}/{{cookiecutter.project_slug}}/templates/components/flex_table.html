@@ -1,4 +1,4 @@
-<table id="{{ id }}" class="{{ classes }} table table-stripped">
+{% raw %}<table id="{{ id }}" class="{{ classes }} table table-stripped">
   {% if names %}
     <thead>
       <tr class="trow-0 trow">
@@ -22,3 +22,4 @@
     {% endfor %}
   </tbody>
 </table>
+{% endraw %}

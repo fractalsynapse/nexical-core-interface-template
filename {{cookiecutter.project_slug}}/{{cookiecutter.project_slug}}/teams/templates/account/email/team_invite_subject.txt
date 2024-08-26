@@ -1,4 +1,5 @@
-{% load i18n %}
+{% raw %}{% load i18n %}
 {% autoescape off %}
 {% blocktrans with team_name=team.name %}You've been invited to team: {{ team_name }}{% endblocktrans %}
 {% endautoescape %}
+{% endraw %}

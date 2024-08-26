@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% raw %}{% extends 'base.html' %}
 
 {% load static %}
 {% load crispy_forms_tags
@@ -21,3 +21,4 @@ block javascript %} {{ block.super }}
     {% include
     'components/project_base_form.html' %}
   {% endblock content %}
+{% endraw %}

@@ -1,4 +1,4 @@
-{% load static %}
+{% raw %}{% load static %}
 
 <div class="summarize-form container">
   <div id="summary-container" class="summary-empty">
@@ -117,3 +117,4 @@
     <input type="hidden" id="summary-save-url" value="{% url 'research:save_summary' %}" />
   </form>
 </div>
+{% endraw %}
