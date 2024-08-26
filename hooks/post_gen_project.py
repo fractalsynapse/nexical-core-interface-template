@@ -135,9 +135,9 @@ def set_redis_password(file_path):
 
 
 def set_public_env():
-    django_env_path = os.path.join("{{cookiecutter.project_slug}}", ".env", ".django")
-    postgres_env_path = os.path.join("{{cookiecutter.project_slug}}", ".env", ".postgres")
-    redis_env_path = os.path.join("{{cookiecutter.project_slug}}", ".env", ".redis")
+    django_env_path = os.path.join(".env", ".django")
+    postgres_env_path = os.path.join(".env", ".postgres")
+    redis_env_path = os.path.join(".env", ".redis")
 
     set_django_secret_key(django_env_path)
 
@@ -148,7 +148,7 @@ def set_public_env():
 
 
 def set_secret_env():
-    secret_env_path = os.path.join("{{cookiecutter.project_slug}}", ".env", ".secret")
+    secret_env_path = os.path.join(".env", ".secret")
 
     with open(secret_env_path, "w+") as f:
         f.writelines(
@@ -170,10 +170,12 @@ CONTACT_NOTIFICATION_EMAIL="{{ cookiecutter.contact_email }}"
 def remove_open_source_files():
     file_names = ["CONTRIBUTORS.txt", "LICENSE"]
     for file_name in file_names:
-        os.remove(os.path.join("{{cookiecutter.project_slug}}", file_name))
+        os.remove(file_name)
 
 
 def main():
+    print(SUCCESS + f"Path: {os.getcwd()}." + TERMINATOR)
+
     set_public_env()
     set_secret_env()
 
