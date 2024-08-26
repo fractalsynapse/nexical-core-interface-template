@@ -2,7 +2,7 @@
 
 WORK_DIR="$(dirname "$0")"
 DISTRO_NAME=$(lsb_release -sc)
-OS_REQUIREMENTS_FILENAME="requirements-$DISTRO_NAME.apt"
+OS_REQUIREMENTS_FILENAME="requirements/requirements-$DISTRO_NAME.apt"
 
 cd $WORK_DIR
 

@@ -7,7 +7,7 @@ set -o errexit
 set -x
 
 # Install OS deps
-sudo tests/install_os_dependencies.sh install
+sudo scripts/install_os_dependencies.sh install
 
 # create a cache directory
 mkdir -p .cache/bare
