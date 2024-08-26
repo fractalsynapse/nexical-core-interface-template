@@ -67,7 +67,7 @@ Now take a look at your repo.
 ## Community
 
 - If you think you found a bug or want to request a feature, please open an [issue](https://github.com/fractalsynapse/nexical-core-interface-template/issues).
-- For anything else, you can chat with us on [Discord](https://discord.gg/uFXweDQc5a).
+- For anything else, you can chat with us on [Discord](https://discord.gg/7kJCN6EtQA).
 
 <img src="https://opencollective.com/cookiecutter-django/contributors.svg?width=890&button=false" alt="Contributors">
 
@@ -77,12 +77,12 @@ Need a stable release? You can find them at <https://github.com/fractalsynapse/n
 
 ## Not Exactly What You Want?
 
-This is what I want. _It might not be what you want._ Don't worry, you have options:
+This is a starting point. _It might not be what you want._ If so, you have options:
 
-### Fork This
+### Fork This Template
 
-If you have differences in your preferred setup, I encourage you to fork this to create your own version.
-Once you have your fork working, let me know and I'll add it to a '_Similar Cookiecutter Templates_' list here.
+If you have differences in your preferred setup, we encourage you to fork this to create your own version.
+Once you have your fork working, let us know and I'll add it to a '_Similar Cookiecutter Templates_' list here.
 It's up to you whether to rename your fork.
 
 If you do rename your fork, I encourage you to submit it to the following places:
