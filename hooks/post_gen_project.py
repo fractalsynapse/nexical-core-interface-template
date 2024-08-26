@@ -175,6 +175,7 @@ def remove_open_source_files():
 
 def main():
     print(SUCCESS + f"Path: {os.getcwd()}." + TERMINATOR)
+    print(SUCCESS + f"Directories: {os.listdir(os.getcwd())}." + TERMINATOR)
 
     set_public_env()
     set_secret_env()
