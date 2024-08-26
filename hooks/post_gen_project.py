@@ -82,6 +82,16 @@ def set_flag(file_path, flag, value=None, formatted=None, *args, **kwargs):
     return value
 
 
+def replace_file(read_file_path, write_file_path):
+    with open(read_file_path, "r+") as rf:
+        file_contents = rf.read()
+
+        with open(write_file_path, "r+") as wf:
+            wf.seek(0)
+            wf.write(file_contents)
+            wf.truncate()
+
+
 def set_django_secret_key(file_path):
     django_secret_key = set_flag(
         file_path,
@@ -149,10 +159,23 @@ DJANGO_DEFAULT_FROM_EMAIL="{{ cookiecutter.from_email }}"
 CONTACT_NOTIFICATION_EMAIL="{{ cookiecutter.contact_email }}"
 """)
 
+
 def remove_open_source_files():
     file_names = ["CONTRIBUTORS.txt", "LICENSE"]
     for file_name in file_names:
         os.remove(file_name)
+
+
+def set_cicd():
+    cookiecutter_cicd_path = os.path.join(".github", "cookiecutter")
+    app_cicd_path = os.path.join(cookiecutter_cicd_path, "cicd.yml")
+
+    workflow_cicd_path = os.path.join(".github", "workflows")
+    active_cicd_path = os.path.join(workflow_cicd_path, "cicd.yml")
+
+    replace_file(app_cicd_path, active_cicd_path)
+
+    shutil.rmtree(cookiecutter_cicd_path, ignore_errors=True)
 
 
 def main():
@@ -161,6 +184,8 @@ def main():
 
     if "{{ cookiecutter.open_source_license }}" == "Not open source":
         remove_open_source_files()
+
+    set_cicd()
 
     print(SUCCESS + "Project initialized." + TERMINATOR)
 
