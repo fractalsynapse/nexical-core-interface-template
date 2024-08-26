@@ -14,7 +14,7 @@ mkdir -p .cache/bare
 cd .cache/bare
 
 # create the project using the default settings in cookiecutter.json
-cookiecutter ../../ --no-input "$@"
+cookiecutter ../../ --no-input --overwrite-if-exists "$@"
 cd my_awesome_project
 
 # Install Python deps
