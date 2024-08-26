@@ -15,7 +15,7 @@ cd .cache/bare
 
 # create the project using the default settings in cookiecutter.json
 cookiecutter ../../ --no-input --overwrite-if-exists "$@"
-cd my_awesome_project
+cd nexical_core_interface
 
 # Install Python deps
 pip install -r requirements/local.txt

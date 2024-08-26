@@ -11,14 +11,14 @@ mkdir -p .cache/docker
 cd .cache/docker
 
 # create the project using the default settings in cookiecutter.json
-cookiecutter ../../ --no-input "$@"
-cd my_awesome_project
+cookiecutter ../../ --no-input --overwrite-if-exists "$@"
+cd nexical_core_interface
 
 # make sure all images build
 docker compose build
 
 # run the project's type checks
-docker compose run django mypy my_awesome_project
+docker compose run django mypy nexical_core_interface
 
 # run the project's tests
 docker compose run django pytest
