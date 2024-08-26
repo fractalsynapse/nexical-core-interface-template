@@ -10,12 +10,12 @@ set -x
 mkdir -p .cache/bare
 cd .cache/bare
 
+# Install OS deps
+sudo tests/install_os_dependencies.sh install
+
 # create the project using the default settings in cookiecutter.json
 cookiecutter ../../ --no-input "$@"
 cd my_awesome_project
-
-# Install OS deps
-sudo ../tests/install_os_dependencies.sh install
 
 # Install Python deps
 pip install -r requirements/local.txt
