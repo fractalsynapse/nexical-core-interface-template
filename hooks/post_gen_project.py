@@ -166,26 +166,12 @@ def remove_open_source_files():
         os.remove(file_name)
 
 
-def set_cicd():
-    cookiecutter_cicd_path = os.path.join(".github", "cookiecutter")
-    app_cicd_path = os.path.join(cookiecutter_cicd_path, "cicd.yml")
-
-    workflow_cicd_path = os.path.join(".github", "workflows")
-    active_cicd_path = os.path.join(workflow_cicd_path, "cicd.yml")
-
-    replace_file(app_cicd_path, active_cicd_path)
-
-    shutil.rmtree(cookiecutter_cicd_path, ignore_errors=True)
-
-
 def main():
     set_public_env()
     set_secret_env()
 
     if "{{ cookiecutter.open_source_license }}" == "Not open source":
         remove_open_source_files()
-
-    set_cicd()
 
     print(SUCCESS + "Project initialized." + TERMINATOR)
 

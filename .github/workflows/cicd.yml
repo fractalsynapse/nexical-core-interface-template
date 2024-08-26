@@ -1,56 +1,103 @@
 name: CI
 
-# Enable Buildkit and let compose use it to speed up image building
-env:
-  DOCKER_BUILDKIT: 1
-  COMPOSE_DOCKER_CLI_BUILD: 1
-
 on:
-  pull_request:
-    branches: ['main']
-
   push:
-    branches: ['main']
+    branches: ["main"]
+  pull_request:
 
 concurrency:
   group: ${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
 jobs:
-  linter:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code Repository
-        uses: actions/checkout@v4
+  tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macOS-latest
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+    name: "pytest ${{ matrix.os }}"
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-      - name: Run pre-commit
-        uses: pre-commit/action@v3.0.1
+          python-version: "3.12"
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run tests
+        run: pytest -n auto tests
 
-  pytest:
+  docker:
+    strategy:
+      fail-fast: false
+      matrix:
+        script:
+          - name: Basic
+            args: ""
+
+    name: "Docker ${{ matrix.script.name }}"
     runs-on: ubuntu-latest
+    env:
+      DOCKER_BUILDKIT: 1
+      COMPOSE_DOCKER_CLI_BUILD: 1
 
     steps:
-      - name: Checkout Code Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Docker ${{ matrix.script.name }}
+        run: sh tests/test_docker.sh ${{ matrix.script.args }}
 
-      - name: Create .secret environment file
-        run: touch .env/.secret
+  bare:
+    strategy:
+      fail-fast: false
+      matrix:
+        script:
+          - name: Basic
+            args: ""
 
-      - name: Build the Stack
-        run: docker compose build
+    name: "Bare metal ${{ matrix.script.name }}"
+    runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis:5.0
+        ports:
+          - 6379:6379
+      postgres:
+        image: postgres:12
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_PASSWORD: postgres
 
-      - name: Run DB Migrations
-        run: docker compose run --rm ui python manage.py migrate
+    env:
+      REDIS_BASE_URL: "redis://localhost:6379"
+      # postgres://user:password@host:port/database
+      DATABASE_URL: "postgres://postgres:postgres@localhost:5432/postgres"
 
-      - name: Run Django UI Tests
-        run: docker compose run ui pytest --ds=config.settings.local.ui -o 'python_files=test_ui_*.py'
-
-      - name: Run Django API Tests
-        run: docker compose run api pytest --ds=config.settings.local.api -o 'python_files=test_api_*.py'
-
-      - name: Tear down the Stack
-        run: docker compose down
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            {{cookiecutter.project_slug}}/requirements/base.txt
+            {{cookiecutter.project_slug}}/requirements/local.txt
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Bare Metal ${{ matrix.script.name }}
+        run: sh tests/test_bare.sh ${{ matrix.script.args }}
