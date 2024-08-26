@@ -1,10 +1,15 @@
 {
-  "project_name": "Nexical Core Interface",
-  "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
-  "description": "This is a starter project for building Django based Nexical AI interfaces",
-  "domain_name": "nexical.ai",
-  "open_source_license": ["Apache Software License 2.0", "Not open source"],
-  "mailgun_api_key": "",
-  "mailgun_webhook_key": "",
-  "mailgun_domain": "{{ cookiecutter.domain_name }}"
+    "project_name": "Nexical Core Interface",
+    "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
+    "description": "This is a starter project for building Django based Nexical AI interfaces",
+    "open_source_license": [
+        "Apache Software License 2.0",
+        "Not open source"
+    ],
+    "domain_name": "nexical.ai",
+    "from_email": "Nexical AI <noreply@{{ cookiecutter.domain_name }}>",
+    "contact_email": "",
+    "mailgun_api_key": "",
+    "mailgun_webhook_key": "",
+    "mailgun_domain": "{{ cookiecutter.domain_name }}"
 }
