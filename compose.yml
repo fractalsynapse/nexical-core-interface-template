@@ -34,6 +34,7 @@ services:
     env_file:
       - ./.env/.django
       - ./.env/.postgres
+      - ./.env/.redis
       - ./.env/.secret
     ports:
       - '8000:8000'
@@ -97,7 +98,14 @@ services:
   redis:
     image: redis:6
     container_name: '{{ cookiecutter.project_slug }}_redis'
-    ports:
-      - '6379:6379'
+    command:
+      - /bin/sh
+      - -c
+      - redis-server --requirepass '$${REDIS_PASSWORD}'
     volumes:
       - '{{ cookiecutter.project_slug }}_redis_data:/data'
+    env_file:
+      - ./.env/.redis
+      - ./.env/.secret
+    ports:
+      - '6379:6379'
