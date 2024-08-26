@@ -12,10 +12,8 @@ TODO: add membership based ecommerce system
 
 from __future__ import print_function
 
-import json
 import os
 import random
-import shutil
 import string
 
 try:
@@ -92,6 +90,12 @@ def replace_file(read_file_path, write_file_path):
             wf.truncate()
 
 
+def append_to_gitignore_file(ignored_line):
+    with open(".gitignore", "a") as gitignore_file:
+        gitignore_file.write(ignored_line)
+        gitignore_file.write("\n")
+
+
 def set_django_secret_key(file_path):
     django_secret_key = set_flag(
         file_path,
@@ -106,6 +110,7 @@ def set_django_secret_key(file_path):
 def set_postgres_user(file_path, value):
     postgres_user = set_flag(file_path, "!!!SET POSTGRES_USER!!!", value=value)
     return postgres_user
+
 
 def set_postgres_password(file_path):
     postgres_password = set_flag(
@@ -146,7 +151,8 @@ def set_secret_env():
     secret_env_path = os.path.join(".env", ".secret")
 
     with open(secret_env_path, "w+") as f:
-        f.writelines("""
+        f.writelines(
+            """
 # Mailgun
 # ------------------------------------------------------------------------------
 MAILGUN_API_KEY="{{ cookiecutter.mailgun_api_key }}"
@@ -157,7 +163,8 @@ MAILGUN_DOMAIN="{{ cookiecutter.mailgun_domain }}"
 # ------------------------------------------------------------------------------
 DJANGO_DEFAULT_FROM_EMAIL="{{ cookiecutter.from_email }}"
 CONTACT_NOTIFICATION_EMAIL="{{ cookiecutter.contact_email }}"
-""")
+"""
+        )
 
 
 def remove_open_source_files():
