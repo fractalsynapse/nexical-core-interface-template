@@ -8,7 +8,7 @@
     ],
     "domain_name": "nexical.ai",
     "from_email": "Nexical AI <noreply@{{ cookiecutter.domain_name }}>",
-    "contact_email": "",
+    "contact_email": "hello@{{ cookiecutter.domain_name }}",
     "mailgun_api_key": "",
     "mailgun_webhook_key": "",
     "mailgun_domain": "{{ cookiecutter.domain_name }}"
