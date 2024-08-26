@@ -1,11 +1,9 @@
 # Cookiecutter Nexical Core Interface
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/fractalsynapse/nexical-core-interface-template/cicd.yml?branch=main)](https://github.com/fractalsynapse/nexical-core-interface-template/actions/workflows/cicd.yml?query=branch%3Amain)
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/fractalsynapse/nexical-core-interface-template/main.svg)](https://results.pre-commit.ci/latest/github/fractalsynapse/nexical-core-interface-template/main)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
-[![Join our Discord](https://img.shields.io/badge/Discord-cookiecutter-5865F2?style=flat&logo=discord&logoColor=white)](https://discord.gg/cFKeWWHWag)
-[![Code Helpers Badge](https://www.codetriage.com/fractalsynapse/nexical-core-interface-template/badges/users.svg)](https://www.codetriage.com/fractalsynapse/nexical-core-interface-template)
+[![Join our Discord](https://img.shields.io/badge/Discord-cookiecutter-5865F2?style=flat&logo=discord&logoColor=white)](https://discord.gg/7kJCN6EtQA)
 
 Powered by [Cookiecutter](https://github.com/cookiecutter/cookiecutter), Nexical Cookiecutter Core Interface Template is a framework for jumpstarting
 production-ready Django Nexical frontend sites quickly.
