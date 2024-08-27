@@ -20,5 +20,5 @@ SECURE_REFERRER_POLICY = "no-referrer"
 # -------------------------------------------------------------------------------
 # Tools that generate code samples can use SERVERS to point to the correct domain
 SPECTACULAR_SETTINGS["SERVERS"] = [  # noqa: F405
-    {"url": "https://api.core.nexical.ai", "description": "Nexical Knowledge Explorer"},
+    {"url": "https://api.{{ cookiecutter.domain_name }}", "description": "{{ cookiecutter.project_name }}"},
 ]

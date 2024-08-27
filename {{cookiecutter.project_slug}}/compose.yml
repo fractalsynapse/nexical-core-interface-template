@@ -13,7 +13,7 @@ services:
     depends_on:
       - ui
     volumes:
-      - '.:/{{ cookiecutter.project_slug }}:z'
+      - '.:/app:z'
     command: npm run dev
     ports:
       - '3000:3000'
@@ -30,7 +30,7 @@ services:
       - postgres
       - redis
     volumes:
-      - '.:/{{ cookiecutter.project_slug }}:z'
+      - '.:/app:z'
     env_file:
       - ./.env/.django
       - ./.env/.postgres
