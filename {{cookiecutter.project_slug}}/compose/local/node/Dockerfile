@@ -1,8 +1,8 @@
 FROM node:22-bullseye-slim
 
-WORKDIR /{{ cookiecutter.project_slug }}
+WORKDIR /app
 
-COPY ./package.json /{{ cookiecutter.project_slug }}
+COPY ./package.json /app
 
 RUN npm install && npm cache clean --force
 

@@ -6,8 +6,8 @@ set -o nounset
 
 export DJANGO_SETTINGS_MODULE=config.settings.production.base
 
-python /{{ cookiecutter.project_slug }}/manage.py migrate
-python /{{ cookiecutter.project_slug }}/manage.py init_roles
-python /{{ cookiecutter.project_slug }}/manage.py init_schedule
+python /app/manage.py migrate
+python /app/manage.py init_roles
+python /app/manage.py init_schedule
 
 exec celery -A config.celery_app beat -l INFO
