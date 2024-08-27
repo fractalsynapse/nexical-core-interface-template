@@ -21,7 +21,8 @@ cd nexical_core_interface
 pip install -r requirements/local.txt
 
 # run the project's tests
-pytest
+pytest --ds=config.settings.local.ui -o 'python_files=test_ui_*.py'
+pytest --ds=config.settings.local.api -o 'python_files=test_api_*.py'
 
 # Make sure the check doesn't raise any warnings
 python manage.py check --fail-level WARNING
