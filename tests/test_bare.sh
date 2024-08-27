@@ -18,10 +18,10 @@ cookiecutter ../../ --no-input --overwrite-if-exists "$@"
 cd nexical_core_interface
 
 # Load environment variables
-source .env/.django
-source .env/.postgres
-source .env/.redis
-source .env/.secret
+. .env/.django
+. .env/.postgres
+. .env/.redis
+. .env/.secret
 
 # Install Python deps
 pip install -r requirements/local.txt
