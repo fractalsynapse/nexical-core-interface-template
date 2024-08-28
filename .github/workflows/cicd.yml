@@ -32,30 +32,30 @@ jobs:
       - name: Run tests
         run: pytest -n auto tests
 
-    docker:
-      strategy:
-        fail-fast: false
-        matrix:
-          script:
-            - name: Basic
-              args: ""
+  docker:
+    strategy:
+      fail-fast: false
+      matrix:
+        script:
+          - name: Basic
+            args: ""
 
-      name: "Docker ${{ matrix.script.name }}"
-      runs-on: ubuntu-latest
-      env:
-        DOCKER_BUILDKIT: 1
-        COMPOSE_DOCKER_CLI_BUILD: 1
+    name: "Docker ${{ matrix.script.name }}"
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_BUILDKIT: 1
+      COMPOSE_DOCKER_CLI_BUILD: 1
 
-      steps:
-        - uses: actions/checkout@v4
-        - uses: actions/setup-python@v5
-          with:
-            python-version: "3.12"
-            cache: pip
-        - name: Install dependencies
-          run: pip install -r requirements.txt
-        - name: Docker ${{ matrix.script.name }}
-          run: sh tests/test_docker.sh ${{ matrix.script.args }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Docker ${{ matrix.script.name }}
+        run: sh tests/test_docker.sh ${{ matrix.script.args }}
 #   bare:
 #     strategy:
 #       fail-fast: false
