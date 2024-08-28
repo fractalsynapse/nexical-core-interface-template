@@ -18,16 +18,16 @@ cd nexical_core_interface
 docker compose build
 
 # run the project's type checks
-docker compose run django mypy nexical_core_interface
+docker compose run api mypy nexical_core_interface
 
 # run the project's tests
-docker compose run django pytest
+docker compose run api pytest
 
 # return non-zero status code if there are migrations that have not been created
-docker compose run django python manage.py makemigrations --dry-run --check || { echo "ERROR: there were changes in the models, but migration listed above have not been created and are not saved in version control"; exit 1; }
+docker compose run api python manage.py makemigrations --dry-run --check || { echo "ERROR: there were changes in the models, but migration listed above have not been created and are not saved in version control"; exit 1; }
 
 # Test support for translations
-docker compose run django python manage.py makemessages --all
+docker compose run api python manage.py makemessages --all
 
 # Make sure the check doesn't raise any warnings
 docker compose run \
@@ -36,7 +36,7 @@ docker compose run \
   -e DJANGO_ADMIN_URL=x \
   -e MAILGUN_API_KEY=x \
   -e MAILGUN_DOMAIN=x \
-  django python manage.py check --settings=config.settings.production --deploy --database default --fail-level WARNING
+  api python manage.py check --settings=config.settings.production --deploy --database default --fail-level WARNING
 
 # Run npm build script if package.json is present
 if [ -f "package.json" ]
