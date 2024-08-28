@@ -18,10 +18,11 @@ cd nexical_core_interface
 docker compose build
 
 # run the project's type checks
-docker compose run api mypy nexical_core_interface
+docker compose run api mypy app
 
 # run the project's tests
-docker compose run api pytest
+docker compose run ui pytest -o 'python_files=test_ui_*.py'
+docker compose run api pytest -o 'python_files=test_api_*.py'
 
 # return non-zero status code if there are migrations that have not been created
 docker compose run api python manage.py makemigrations --dry-run --check || { echo "ERROR: there were changes in the models, but migration listed above have not been created and are not saved in version control"; exit 1; }
