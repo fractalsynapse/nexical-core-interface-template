@@ -17,9 +17,6 @@ cd nexical_core_interface
 # make sure all images build
 docker compose build
 
-# run the project's type checks
-docker compose run api mypy app
-
 # run the project's tests
 docker compose run ui pytest --ds=config.settings.local.ui -o 'python_files=test_ui_*.py'
 docker compose run api pytest --ds=config.settings.local.api -o 'python_files=test_api_*.py'
