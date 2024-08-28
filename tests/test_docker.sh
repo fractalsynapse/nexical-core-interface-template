@@ -33,10 +33,9 @@ docker compose run api python manage.py makemessages --all
 # Make sure the check doesn't raise any warnings
 docker compose run \
   -e DJANGO_SECRET_KEY="$(openssl rand -base64 64)" \
-  -e DJANGO_ADMIN_PATH=x \
   -e MAILGUN_API_KEY=x \
   -e MAILGUN_DOMAIN=x \
-  ui python manage.py check --settings=config.settings.production.ui --deploy --database default --fail-level WARNING
+  ui python manage.py check --settings=config.settings.local.ui --deploy --database default --fail-level WARNING
 
 # Run npm build script if package.json is present
 if [ -f "package.json" ]
