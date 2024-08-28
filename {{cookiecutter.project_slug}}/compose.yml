@@ -98,10 +98,6 @@ services:
   redis:
     image: redis:6
     container_name: '{{ cookiecutter.project_slug }}_redis'
-    command:
-      - /bin/sh
-      - -c
-      - redis-server --requirepass '$${REDIS_PASSWORD}'
     volumes:
       - '{{ cookiecutter.project_slug }}_redis_data:/data'
     env_file:
