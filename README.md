@@ -67,8 +67,6 @@ Now take a look at your repo.
 - If you think you found a bug or want to request a feature, please open an [issue](https://github.com/fractalsynapse/nexical-core-interface-template/issues).
 - For anything else, you can chat with us on [Discord](https://discord.gg/7kJCN6EtQA).
 
-<img src="https://opencollective.com/cookiecutter-django/contributors.svg?width=890&button=false" alt="Contributors">
-
 ## Releases
 
 Need a stable release? You can find them at <https://github.com/fractalsynapse/nexical-core-interface-template/releases>
