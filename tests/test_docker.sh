@@ -37,7 +37,7 @@ docker compose run \
   -e DJANGO_ADMIN_URL=x \
   -e MAILGUN_API_KEY=x \
   -e MAILGUN_DOMAIN=x \
-  api python manage.py check --settings=config.settings.production --deploy --database default --fail-level WARNING
+  ui python manage.py check --settings=config.settings.production.ui --deploy --database default --fail-level WARNING
 
 # Run npm build script if package.json is present
 if [ -f "package.json" ]
