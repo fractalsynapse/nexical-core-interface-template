@@ -12,8 +12,6 @@ TODO: add membership based ecommerce system
 
 from __future__ import print_function
 
-import sys
-
 TERMINATOR = "\x1b[0m"
 WARNING = "\x1b[1;33m [WARNING]: "
 INFO = "\x1b[1;33m [INFO]: "
