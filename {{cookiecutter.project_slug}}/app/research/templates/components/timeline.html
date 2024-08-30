@@ -11,7 +11,7 @@
           <select id="tag-selector" class="selector">
             <option value="">all</option>
             {% for tag in tags %}
-              <option value="{{ tag.name }}" {% if active_tag and active_tag=="tag.name" %}selected{% endif %}>
+              <option value="{{ tag.name }}" {% if active_tag and active_tag == tag.name %}selected{% endif %}>
                 {{ tag.name }}
               </option>
             {% endfor %}
@@ -96,18 +96,13 @@
       <i class="bx bx-info-circle mx-3"></i>
       <div class="d-flex flex-column">
         <p class="mb-0 d-block">
-          <strong>This section will display a filterable timeline of generated project
-            notes and AI summaries as you start researching document
-          topics.</strong>
+          <strong>This section will display a filterable timeline of generated project notes and AI summaries as you start researching document topics.</strong>
         </p>
         <p class="mt-3 mb-0 d-block">
-          The summaries and notes in this timeline will influence the AI research
-          answers over time, and are shared when you share projects with other
-          teams.
+          The summaries and notes in this timeline will influence the AI research answers over time, and are shared when you share projects with other teams.
         </p>
         <p class="mt-3 mb-0 d-block">
-          Click the red minus button on timeline cards to eliminate the responses
-          that you don't want to influence the AI assistant.
+          Click the red minus button on timeline cards to eliminate the responses that you don't want to influence the AI assistant.
         </p>
       </div>
     </div>

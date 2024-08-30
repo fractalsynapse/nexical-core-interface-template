@@ -1,11 +1,9 @@
 {% raw %}{% extends "base.html" %}
 
-{% load static i18n site_urls crispy_forms_tags
-user_perms %}
+{% load static i18n site_urls crispy_forms_tags user_perms %}
 
 {% block title %}
-  Manage API Token: {{ user.first_name }} {{
-  user.last_name }}
+  Manage API Token: {{ user.first_name }} {{ user.last_name }}
 {% endblock title %}
 {% block javascript %}
   {{ block.super }}
@@ -29,17 +27,21 @@ user_perms %}
                  role="button"><span>Account Home</span></a>
               <a class="btn group-btn align-middle btn-outline-primary mx-1 my-2 my-lg-0 d-block d-lg-inline"
                  href="{% url 'users:update' %}"
-                 role="button"><span>Update Profile</span></a>
+                 role="button"><span>Update
+              Profile</span></a>
               <a class="btn group-btn align-middle btn-outline-primary mx-1 my-2 my-lg-0 d-block d-lg-inline"
                  href="{% url 'account_email' %}"
-                 role="button"><span>Update E-Mails</span></a>
+                 role="button"><span>Update
+              E-Mails</span></a>
               <a class="btn group-btn align-middle btn-outline-primary mx-1 my-2 my-lg-0 d-block d-lg-inline"
                  href="{% url 'account_change_password' %}"
-                 role="button"><span>Update Password</span></a>
+                 role="button"><span>Update
+              Password</span></a>
               {% if team_member %}
                 <a class="btn group-btn align-middle btn-outline-primary mx-1 my-2 my-lg-0 d-block d-lg-inline active"
                    href="{% url 'users:token' %}"
-                   role="button"><span>Update Token</span></a>
+                   role="button"><span>Update
+                Token</span></a>
               {% endif %}
             </div>
           </div>
@@ -55,7 +57,7 @@ user_perms %}
             <div class="my-3 border rounded-4 p-md-3">
               {% if token %}
                 <div class="api-token row border-bottom p-2 mb-3">
-                  <div id="token-value" class="col-10 p-3">{{ token }}</div>
+                  <div id="token-value" class="col-10 p-3 ">{{ token }}</div>
                   <div class="col-2 p-3">
                     <a id="token-copy" href="#" class="token-op text-decoration-none d-flex align-items-center gap-1" title="Copy">
                       <i class="bx bx-copy bx-sm"></i> <span>Copy</span>
@@ -76,20 +78,20 @@ user_perms %}
                   {% if token %}
                     Regenerate Token
                   {% else %}
-                    Generate Token {%
-                    endif %}
-                  </button>
-                  {% if token %}
-                    <button type="button" class="token-button btn btn-primary mb-5" data-url="{% url 'users:revoke_token' %}">
-                      Revoke
-                    </button>
+                    Generate Token
                   {% endif %}
-                </div>
+                </button>
+                {% if token %}
+                  <button type="button" class="token-button btn btn-primary mb-5" data-url="{% url 'users:revoke_token' %}">
+                    Revoke
+                  </button>
+                {% endif %}
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  {% endblock content %}
+  </div>
+{% endblock content %}
 {% endraw %}

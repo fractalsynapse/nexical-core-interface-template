@@ -24,12 +24,10 @@
               {% if column.localize == None %}
                 {{ cell }}
               {% else %}
-                {% if
-                  column.localize %}
+                {% if column.localize %}
                   {{ cell|localize }}
                 {% else %}
-                  {{ cell|unlocalize
-                  }}
+                  {{ cell|unlocalize }}
                 {% endif %}
               {% endif %}
             </div>
@@ -46,8 +44,7 @@
     {% if table.has_footer %}
       <div class="row" {{ table.attrs.tfoot.as_html }}>
         {% for column in table.columns %}
-          <div class="col text-nowrap" {{ column.attrs.tf.as_html }}>
-            {{ column.footer }}
+          <div class="col text-nowrap" {{ column.attrs.tf.as_html }}>{{ column.footer }}
           </div>
         {% endfor %}
       </div>
@@ -61,9 +58,8 @@
         </li>
       {% endif %}
       {% if table.page.has_previous or table.page.has_next %}
-        {% for p
-          in table.page|table_page_range:table.paginator %}
-          <li {% if p="" ="table.page.number" %}class="active"{% endif %}>
+        {% for p in table.page|table_page_range:table.paginator %}
+          <li {% if p == table.page.number %}class="active"{% endif %}>
             {% if p == '...' %}
               <a href="#">{{ p }}</a>
             {% else %}

@@ -3,11 +3,9 @@
 {% load static user_perms %}
 
 {% block title %}
-  Member:
-  {{ object.first_name }} {{ object.last_name }}
+  Member: {{ object.first_name }} {{ object.last_name }}
 {% endblock title %}
-{% block
-  content %}
+{% block content %}
   <div class="container-fluid">
     <div class="page-wrapper d-flex justify-content-center">
       {% if object == request.user %}
@@ -26,17 +24,21 @@
                    role="button"><span>Account Home</span></a>
                 <a class="btn group-btn align-middle btn-outline-primary mx-1 my-2 my-lg-0 d-block d-lg-inline"
                    href="{% url 'users:update' %}"
-                   role="button"><span>Update Profile</span></a>
+                   role="button"><span>Update
+                Profile</span></a>
                 <a class="btn group-btn align-middle btn-outline-primary mx-1 my-2 my-lg-0 d-block d-lg-inline"
                    href="{% url 'account_email' %}"
-                   role="button"><span>Update E-Mails</span></a>
+                   role="button"><span>Update
+                E-Mails</span></a>
                 <a class="btn group-btn align-middle btn-outline-primary mx-1 my-2 my-lg-0 d-block d-lg-inline"
                    href="{% url 'account_change_password' %}"
-                   role="button"><span>Update Password</span></a>
+                   role="button"><span>Update
+                Password</span></a>
                 {% if team_member %}
                   <a class="btn group-btn align-middle btn-outline-primary mx-1 my-2 my-lg-0 d-block d-lg-inline"
                      href="{% url 'users:token' %}"
-                     role="button"><span>Update Token</span></a>
+                     role="button"><span>Update
+                  Token</span></a>
                 {% endif %}
               </div>
             </div>

@@ -1,7 +1,6 @@
 {% raw %}{% load static i18n site_urls user_perms team_select %}
 
-{% is_team_member
-request.user as team_member %}
+{% is_team_member request.user as team_member %}
 {% if request.user.is_authenticated %}
   <div class="l-navbar">
     <nav class="l-navbar-nav">
@@ -10,7 +9,7 @@ request.user as team_member %}
           <img width="32" height="32" src="{% static 'images/icons/favicon-32x32.png' %}" alt="nexical logo" />
         </a>
         <a href="{% ui_url %}" id="nav-logo-full" class="nav_logo d-none">
-          <img class="brand" src="{% static 'images/logos/logo-full-mix.png' %}" alt="nexical logo" />
+          <img class="brand" src="{% static 'images/logos/nexical-logo-full-mix.png' %}" alt="nexical logo" />
         </a>
         <div class="nav_list border-top pt-4">
           {% if team_member %}

@@ -12,14 +12,14 @@
     width: 42px;
     height: 42px;
     margin-bottom: 1rem;
-    border: none !important;
+    border: none !important
   }
 
-  .rating .form-check-input:checked[type='radio'],
+  .rating .form-check-input:checked[type=radio],
   .rating .form-check-input.checked {
     background-image: url("{% static 'images/icons/star-on.svg' %}") !important;
     --bs-form-check-bg-image: url("{% static 'images/icons/star-on.svg' %}") !important;
-    background-color: transparent !important;
+    background-color: transparent !important
   }
 
   .rating .form-check-input:focus {
@@ -70,7 +70,7 @@
   #help-bar h2 {
     font-size: 1.2rem !important;
     font-weight: 600;
-    padding-left: 0.8rem !important;
+    padding-left: .8rem !important;
   }
 
   #help-bar .close:hover,
@@ -128,38 +128,35 @@
         <form name="feedback-form">
           <!-- START Question 1 -->
           <div id="container">
-            <p class="lead mt-4">
-              How would you rate your satisfaction with our contract discovery
-              platform?
-            </p>
+            <p class="lead mt-4">How would you rate your satisfaction with our contract discovery platform?</p>
             <div class="py-3">
               <div class="row rating">
                 <div class="col">
-                  <div class="d-flex flex-column justify-content-between">
+                  <div class=" d-flex flex-column justify-content-between">
                     <input class="form-check-input align-self-center" type="radio" name="feedback-rating" id="star1" value="1" />
                     <label class="form-check-label" for="star1">1</label>
                   </div>
                 </div>
                 <div class="col">
-                  <div class="d-flex flex-column justify-content-between">
+                  <div class=" d-flex flex-column justify-content-between">
                     <input class="form-check-input align-self-center" type="radio" name="feedback-rating" id="star2" value="2" />
                     <label class="form-check-label" for="star2">2</label>
                   </div>
                 </div>
                 <div class="col">
-                  <div class="d-flex flex-column justify-content-between">
+                  <div class=" d-flex flex-column justify-content-between">
                     <input class="form-check-input align-self-center" type="radio" name="feedback-rating" id="star3" value="3" />
                     <label class="form-check-label" for="star3">3</label>
                   </div>
                 </div>
                 <div class="col">
-                  <div class="d-flex flex-column justify-content-between">
+                  <div class=" d-flex flex-column justify-content-between">
                     <input class="form-check-input align-self-center" type="radio" name="feedback-rating" id="star4" value="4" />
                     <label class="form-check-label" for="star4">4</label>
                   </div>
                 </div>
                 <div class="col">
-                  <div class="d-flex flex-column justify-content-between">
+                  <div class=" d-flex flex-column justify-content-between">
                     <input class="form-check-input align-self-center" type="radio" name="feedback-rating" id="star5" value="5" />
                     <label class="form-check-label" for="star5">5</label>
                   </div>
@@ -228,7 +225,7 @@
             id="btn-close-help-bar"
             title="Close Help / Assistance"
             type="button">
-      <i class="bx bx-x" style="color: white !important"></i>
+      <i class="bx bx-x" style="color: white !important;"></i>
     </button>
   </div>
   <div class="p-3 d-flex flex-column gap-2">
@@ -260,6 +257,8 @@
 <!-- END Floating button -->
 <script>
     $(function() {
+
+
         $('.rating .form-check-input').click(function() {
             $('#rating-warning').addClass('d-none');
             for (var i = 1; i < 6; i++) {
@@ -282,26 +281,23 @@
         });
 
         $('#chat-button').click(function() {
-            $('#zsiq_float').trigger('click');
-            $('#help-bar').removeClass('active');
+            $("#zsiq_float").trigger("click");
+            $("#help-bar").removeClass("active");
             $('#btn-help-bubble').removeClass('d-none');
         });
 
         $('#btn-close-help-bar').click(function() {
-            $('#help-bar').removeClass('active');
+            $("#help-bar").removeClass("active");
             $('#btn-help-bubble').removeClass('d-none');
         });
 
         $('#btn-help-bubble').click(function() {
-            $('#help-bar').addClass('active');
+            $("#help-bar").addClass("active");
             $(this).addClass('d-none');
         });
 
         $('#send-feedback').click(function() {
-            var page_path =
-                window.location.pathname +
-                window.location.hash +
-                window.location.search;
+            var page_path = window.location.pathname + window.location.hash + window.location.search;
 
             if (!$('input[name=feedback-rating]:checked').val()) {
                 $('#rating-warning').removeClass('d-none');

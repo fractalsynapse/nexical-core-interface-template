@@ -12,8 +12,7 @@
 {% endblock javascript %}
 {% block feedback %}
 {% endblock feedback %}
-{% block
-  content %}
+{% block content %}
   <div id="user-token-form" class="container">
     <div class="row bg-white rounded-5 page-wrapper d-flex justify-content-center">
       <div class="token-wrapper container">
@@ -27,7 +26,7 @@
         <div class="my-3 border rounded-4 p-md-3">
           {% if token %}
             <div class="api-token row border-bottom p-2 mb-3">
-              <div id="token-value" class="col-10 p-3">{{ token }}</div>
+              <div id="token-value" class="col-10 p-3 ">{{ token }}</div>
               <div class="col-2 p-3">
                 <a id="token-copy" href="#" class="token-op text-decoration-none d-flex align-items-center gap-1" title="Copy">
                   <i class="bx bx-copy bx-sm"></i> <span>Copy</span>
@@ -49,8 +48,7 @@
                 Regenerate Token
               {% else %}
                 Generate Token
-              {% endif
-              %}
+              {% endif %}
             </button>
             {% if token %}
               <button type="button" class="token-button btn btn-primary mb-5" data-url="{% url 'users:revoke_token' %}">

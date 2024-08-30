@@ -35,55 +35,50 @@
           <div id="main-content">
             {% include 'components/messages.html' %}
             {% block content %}
-              {%
-              endblock content %}
-            </div>
+            {% endblock content %}
           </div>
-        {% endblock wrapper %}
-        <input type="hidden" id="csrf-token" value="{{ csrf_token }}" />
-        <input type="hidden" id="user-settings-url" value="{% url 'users:settings' %}" />
-        <input type="hidden" id="user-settings-save-url" value="{% url 'users:save_settings' %}" />
-      </div>
-      {% block help %}
-        {% if request.user.is_authenticated %}
-          {% include
-          'components/help_bubble.html' %}
-        {% endif %}
-      {% endblock help %}
-      {% block
-        inline_javascript %}
-      {% endblock inline_javascript %}
-      <script type="text/javascript" id="zsiqchat">
-          var $zoho = $zoho || {};
-          $zoho.salesiq = $zoho.salesiq || {
-              widgetcode: 'siqf02f51a8289b28c13b114f986a565a8db16550b78d3ba531b3bac079c1da4f3f',
-              values: {},
-              ready: function() {},
-          };
-          var d = document;
-          s = d.createElement('script');
-          s.type = 'text/javascript';
-          s.id = 'zsiqscript';
-          s.defer = true;
-          s.src = 'https://salesiq.zohopublic.com/widget';
-          t = d.getElementsByTagName('script')[0];
-          t.parentNode.insertBefore(s, t);
-      </script>
+        </div>
+      {% endblock wrapper %}
+      <input type="hidden" id="csrf-token" value="{{ csrf_token }}" />
+      <input type="hidden" id="user-settings-url" value="{% url 'users:settings' %}" />
+      <input type="hidden" id="user-settings-save-url" value="{% url 'users:save_settings' %}" />
+    </div>
+    {% block help %}
       {% if request.user.is_authenticated %}
-        <script>
-            $zoho.salesiq.ready = function() {
-                $zoho.salesiq.visitor.id('{{ request.user.id }}');
-                $zoho.salesiq.visitor.email('{{ request.user.email }}');
-                $zoho.salesiq.visitor.name(
-                    '{{ request.user.first_name }} {{ request.user.last_name }}',
-                );
-                $zoho.salesiq.visitor.info({
-                    organization: '{{ request.user.organization }}',
-                    position: '{{ request.user.position }}',
-                });
-            };
-        </script>
+        {% include 'components/help_bubble.html' %}
       {% endif %}
-    </body>
-  </html>
+    {% endblock help %}
+    {% block inline_javascript %}
+    {% endblock inline_javascript %}
+    <script type="text/javascript" id="zsiqchat">
+        var $zoho = $zoho || {};
+        $zoho.salesiq = $zoho.salesiq || {
+            widgetcode: "siqf02f51a8289b28c13b114f986a565a8db16550b78d3ba531b3bac079c1da4f3f",
+            values: {},
+            ready: function() {}
+        };
+        var d = document;
+        s = d.createElement("script");
+        s.type = "text/javascript";
+        s.id = "zsiqscript";
+        s.defer = true;
+        s.src = "https://salesiq.zohopublic.com/widget";
+        t = d.getElementsByTagName("script")[0];
+        t.parentNode.insertBefore(s, t);
+    </script>
+    {% if request.user.is_authenticated %}
+      <script>
+          $zoho.salesiq.ready = function() {
+              $zoho.salesiq.visitor.id("{{ request.user.id }}");
+              $zoho.salesiq.visitor.email("{{ request.user.email }}");
+              $zoho.salesiq.visitor.name("{{ request.user.first_name }} {{ request.user.last_name }}");
+              $zoho.salesiq.visitor.info({
+                  "organization": "{{ request.user.organization }}",
+                  "position": "{{ request.user.position }}"
+              });
+          }
+      </script>
+    {% endif %}
+  </body>
+</html>
 {% endraw %}
