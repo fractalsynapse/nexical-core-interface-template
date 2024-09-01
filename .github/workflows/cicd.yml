@@ -23,12 +23,15 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
+
       - name: Install dependencies
         run: pip install -r requirements.txt
+
       - name: Run tests
         run: pytest -n auto tests
 
@@ -48,10 +51,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
+
       - name: Install dependencies
         run: pip install -r requirements.txt
 
@@ -63,6 +68,7 @@ jobs:
     defaults:
       run:
         working-directory: ./nexical_core_interface
+
     steps:
       - name: Checkout Code Repository
         uses: actions/checkout@v4
@@ -70,7 +76,11 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+        working-directory: .
 
       - name: Generate Cookiecutter project
         run: cookiecutter --no-input
@@ -81,34 +91,41 @@ jobs:
 
   pytest:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./nexical_core_interface
 
     steps:
       - name: Checkout Code Repository
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+        working-directory: .
+
       - name: Generate Cookiecutter project
         run: cookiecutter --no-input
+        working-directory: .
 
       - name: Create .secret environment file
         run: touch .env/.secret
-        working-directory: ./nexical_core_interface
 
       - name: Build the Stack
         run: docker compose build
-        working-directory: ./nexical_core_interface
 
       - name: Run DB Migrations
         run: docker compose run --rm ui python manage.py migrate
-        working-directory: ./nexical_core_interface
 
       - name: Run Django UI Tests
         run: docker compose run ui pytest --ds=config.settings.local.ui -o 'python_files=test_ui_*.py'
-        working-directory: ./nexical_core_interface
 
       - name: Run Django API Tests
         run: docker compose run api pytest --ds=config.settings.local.api -o 'python_files=test_api_*.py'
-        working-directory: ./nexical_core_interface
 
       - name: Tear down the Stack
         run: docker compose down
-        working-directory: ./nexical_core_interface
