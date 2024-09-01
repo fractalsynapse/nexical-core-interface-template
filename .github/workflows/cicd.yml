@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  tests:
+  cookiecutter_tests:
     strategy:
       fail-fast: false
       matrix:
@@ -56,3 +56,55 @@ jobs:
         run: pip install -r requirements.txt
       - name: Docker ${{ matrix.script.name }}
         run: sh tests/test_docker.sh ${{ matrix.script.args }}
+
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate Cookiecutter project
+        run: cookiecutter --no-input
+
+      - name: Run pre-commit
+        uses: pre-commit/action@v3.0.1
+        working-directory: ./nexical_core_interface
+
+  pytest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Generate Cookiecutter project
+        run: cookiecutter --no-input
+
+      - name: Create .secret environment file
+        run: touch .env/.secret
+        working-directory: ./nexical_core_interface
+
+      - name: Build the Stack
+        run: docker compose build
+        working-directory: ./nexical_core_interface
+
+      - name: Run DB Migrations
+        run: docker compose run --rm ui python manage.py migrate
+        working-directory: ./nexical_core_interface
+
+      - name: Run Django UI Tests
+        run: docker compose run ui pytest --ds=config.settings.local.ui -o 'python_files=test_ui_*.py'
+        working-directory: ./nexical_core_interface
+
+      - name: Run Django API Tests
+        run: docker compose run api pytest --ds=config.settings.local.api -o 'python_files=test_api_*.py'
+        working-directory: ./nexical_core_interface
+
+      - name: Tear down the Stack
+        run: docker compose down
+        working-directory: ./nexical_core_interface
