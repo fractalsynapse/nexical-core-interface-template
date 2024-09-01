@@ -21,7 +21,7 @@ updates:
 
   # Update npm packages
   - package-ecosystem: "npm"
-    directory: "{{cookiecutter.project_slug}}/"
+    directory: "\{\{cookiecutter.project_slug\}\}/"
     schedule:
       interval: "daily"
     labels:
@@ -32,7 +32,7 @@ updates:
   # support wildcards or recursively checking subdirectories. Check this issue for updates:
   # https://github.com/dependabot/dependabot-core/issues/2178
   - package-ecosystem: "docker"
-    directory: "{{cookiecutter.project_slug}}/compose/local/django/"
+    directory: "\{\{cookiecutter.project_slug\}\}/compose/local/django/"
     schedule:
       interval: "daily"
     ignore:
@@ -44,14 +44,14 @@ updates:
       - "update"
 
   - package-ecosystem: "docker"
-    directory: "{{cookiecutter.project_slug}}/compose/local/node/"
+    directory: "\{\{cookiecutter.project_slug\}\}/compose/local/node/"
     schedule:
       interval: "daily"
     labels:
       - "update"
 
   - package-ecosystem: "docker"
-    directory: "{{cookiecutter.project_slug}}/compose/production/django/"
+    directory: "\{\{cookiecutter.project_slug\}\}/compose/production/django/"
     schedule:
       interval: "daily"
     ignore:
