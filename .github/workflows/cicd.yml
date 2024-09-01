@@ -54,11 +54,15 @@ jobs:
           cache: pip
       - name: Install dependencies
         run: pip install -r requirements.txt
+
       - name: Docker ${{ matrix.script.name }}
         run: sh tests/test_docker.sh ${{ matrix.script.args }}
 
   linter:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./nexical_core_interface
     steps:
       - name: Checkout Code Repository
         uses: actions/checkout@v4
@@ -70,10 +74,10 @@ jobs:
 
       - name: Generate Cookiecutter project
         run: cookiecutter --no-input
+        working-directory: .
 
       - name: Run pre-commit
         uses: pre-commit/action@v3.0.1
-        working-directory: ./nexical_core_interface
 
   pytest:
     runs-on: ubuntu-latest
